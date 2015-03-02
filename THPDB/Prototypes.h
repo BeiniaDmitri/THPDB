@@ -18,13 +18,14 @@
 #define King 13
 #define Queen 12
 #define Jack 11
-
+#define cellCount 13
 
 
 struct Player{
 	int bankroll;
 	int firstCard;
 	int secondCard;
+	int hand;
 };
 
 struct Table{
@@ -35,3 +36,4 @@ struct Table{
 int Random();
 bool Compare(Table *, Table *);
 void Game(Player *, Player *, Table *, Table *);
+int CombinationStraight(Table*);
