@@ -46,15 +46,17 @@ void Game(Player *player1, Player *player2, Table *combination1, Table *combinat
 }
 
 int CombinationStraight(Table* combination){
+
 	int highCard = 0;
 	int counter = 0;
 	bool straightIsFound = false;
 	bool cell = false;
 	int straightArray[13] = { 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52 };
+	int straightArrayHelp[13] = { 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52 };
 	for (int i = 0; i <fullSize; i++){
 		for (int j = 0; j < cellCount; j++){
 			if (combination->cards[i] <= straightArray[j]){
-				straightArray[j] = 1;
+				straightArrayHelp[j] = 1;
 				cell = true;
 			}
 			if (cell)
@@ -63,25 +65,27 @@ int CombinationStraight(Table* combination){
 		cell = false;
 	}
 	for (int i = 0; i < cellCount; i++){
-		printf("%d ", straightArray[i]);
+		printf("%d ", straightArrayHelp[i]);
 	}
 	
-	for (int i = cellCount; i >= 0; i--){
-		if (straightArray[i] == 1){
+	for (int i = cellCount - 1; i >= 0; i--){
+		if (straightArrayHelp[i] == 1){
 			for (int j = i;; j--){
-				if (straightArray[j] == 1)
+				if (straightArrayHelp[j] == 1)
 					counter++;
-				if (counter == 4){
+				else break;
+				if (counter == 5){
 					highCard = i;
 					straightIsFound = true;
 					break;
 				}
 			}
 		}
+		counter = 0;
 		if (straightIsFound)
 			break;
 	}
 	if (straightIsFound)
-		return Straight + highCard;
+		return Straight + highCard + 2;
 	else return 0;
 }
