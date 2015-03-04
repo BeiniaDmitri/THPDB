@@ -37,3 +37,4 @@ int Random();
 bool Compare(Table *, Table *);
 void Game(Player *, Player *, Table *, Table *);
 int CombinationStraight(Table*);
+int CombinationFlush(Table*);

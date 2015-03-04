@@ -43,6 +43,20 @@ void Game(Player *player1, Player *player2, Table *combination1, Table *combinat
 	printf("%d\n", player1->hand);
 	if (player1->hand == 0)
 		printf("false\n");
+	
+		
+		combination1->cards[0] = 1;
+		combination1->cards[1] = 13;
+		combination1->cards[2] = 4;
+		combination1->cards[3] = 29;
+		combination1->cards[4] = 21;
+		combination1->cards[5] = 25;
+		combination1->cards[6] = 40;
+		player1->hand = CombinationFlush(combination1);
+	
+	printf("%d\n", player1->hand);
+	if (player1->hand == 0)
+		printf("false\n");
 }
 
 int CombinationStraight(Table* combination){
@@ -89,3 +103,79 @@ int CombinationStraight(Table* combination){
 		return Straight + highCard + 2;
 	else return 0;
 }
+
+
+int CombinationFlush(Table* combination){
+
+//	int highCardHeart = 0;
+//	int highCardSpade = 0;
+//	int highCardClub = 0;
+//	int highCardDiamond = 0;
+	bool flushIsFound = false;
+	int counterHeart = 0;
+	int counterSpade = 0;
+	int counterClub = 0;
+	int counterDiamond = 0;
+	int heart[13] = { 1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49 };
+	int spade[13] = { 2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50 };
+	int club[13] = { 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 51 };
+	int diamond[13] = { 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52 };
+
+	for (int i = 0; i < fullSize; i++) {
+		for (int j = 0; j < fullSize - i - 1; j++) {
+			if (combination->cards[j] > combination->cards[j + 1]) {
+				int tmp = combination->cards[j];
+				combination->cards[j] = combination->cards[j + 1];
+				combination->cards[j + 1] = tmp;
+			}
+		}
+
+	}
+
+	for (int i = fullSize - 1; i >= 0; i--){
+		for (int j = cellCount - 1; j >= 0; j--){
+			if (combination->cards[i] == heart[j]){
+				counterHeart++;
+	            const int highCardHeart = i;
+				break;
+			}
+			if (combination->cards[i] == spade[j]){
+				counterSpade++;
+				const int highCardSpade = i;
+				break;
+			}
+			if (combination->cards[i] == club[j]){
+				counterClub++;
+				const int highCardClub = i;
+				break;
+			}
+			if (combination->cards[i] == diamond[j]){
+				counterDiamond++;
+				const int highCardDiamond = i;
+				break;
+			}
+			
+		}
+		if (counterHeart == 5 || counterClub == 5 || counterDiamond == 5 || counterSpade == 5){
+			flushIsFound = true;
+			break;
+		}
+		if (flushIsFound)
+			break;
+	}
+		if (flushIsFound){
+			printf("%s", "flush!!!");
+//			return Flush + highCard + 2;
+		}
+		else return 0;
+}
+
+
+
+
+
+
+
+
+
+
