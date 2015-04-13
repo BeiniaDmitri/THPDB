@@ -1,14 +1,20 @@
-﻿Build started 04.03.2015 6:01:42.
+﻿Build started 13.04.2015 0:34:53.
      1>Project "E:\ProjectsVS2013\THPDB\THPDB\THPDB.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Logic.cpp
          Logic.cpp
      1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(17): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(171): warning C4715: 'CombinationFlush' : not all control paths return a value
-       Link:
-         THPDB.vcxproj -> E:\ProjectsVS2013\THPDB\Debug\THPDB.exe
-     1>Done Building Project "E:\ProjectsVS2013\THPDB\THPDB\THPDB.vcxproj" (Build target(s)).
+     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(143): error C2065: 'highCardArray' : undeclared identifier
+     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(148): error C2065: 'highCardArray' : undeclared identifier
+     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(153): error C2065: 'highCardArray' : undeclared identifier
+     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(158): error C2065: 'highCardArray' : undeclared identifier
+     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(183): error C2065: 'highCardArray' : undeclared identifier
+     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(184): error C2065: 'highCardArray' : undeclared identifier
+     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(185): error C2065: 'highCardArray' : undeclared identifier
+     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(186): error C2065: 'highCardArray' : undeclared identifier
+     1>e:\projectsvs2013\thpdb\thpdb\logic.cpp(192): error C2065: 'highCardArray' : undeclared identifier
+     1>Done Building Project "E:\ProjectsVS2013\THPDB\THPDB\THPDB.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.84
+Time Elapsed 00:00:00.96

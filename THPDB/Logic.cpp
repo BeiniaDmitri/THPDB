@@ -107,10 +107,11 @@ int CombinationStraight(Table* combination){
 
 int CombinationFlush(Table* combination){
 
-//	int highCardHeart = 0;
-//	int highCardSpade = 0;
-//	int highCardClub = 0;
-//	int highCardDiamond = 0;
+	int highCard = 0;
+	int highCardHeart = 0;
+	int highCardSpade = 0;
+	int highCardDiamond = 0;
+	int highCardClub = 0;
 	bool flushIsFound = false;
 	int counterHeart = 0;
 	int counterSpade = 0;
@@ -120,7 +121,10 @@ int CombinationFlush(Table* combination){
 	int spade[13] = { 2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50 };
 	int club[13] = { 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 51 };
 	int diamond[13] = { 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52 };
-
+	int heartArray[5] = { 0, 0, 0, 0, 0 };
+	int spadeArray[5] = { 0, 0, 0, 0, 0 };
+	int clubArray[5] = { 0, 0, 0, 0, 0 };
+	int diamondArray[5] = { 0, 0, 0, 0, 0 };
 	for (int i = 0; i < fullSize; i++) {
 		for (int j = 0; j < fullSize - i - 1; j++) {
 			if (combination->cards[j] > combination->cards[j + 1]) {
@@ -136,36 +140,60 @@ int CombinationFlush(Table* combination){
 		for (int j = cellCount - 1; j >= 0; j--){
 			if (combination->cards[i] == heart[j]){
 				counterHeart++;
-	            const int highCardHeart = i;
+				heartArray[counterHeart - 1] = j;
 				break;
 			}
 			if (combination->cards[i] == spade[j]){
 				counterSpade++;
-				const int highCardSpade = i;
+				spadeArray[counterSpade - 1] = j;
 				break;
 			}
 			if (combination->cards[i] == club[j]){
 				counterClub++;
-				const int highCardClub = i;
+				clubArray[counterClub - 1] = j;
 				break;
 			}
 			if (combination->cards[i] == diamond[j]){
 				counterDiamond++;
-				const int highCardDiamond = i;
+				diamondArray[counterDiamond - 1] = j;
 				break;
 			}
 			
 		}
-		if (counterHeart == 5 || counterClub == 5 || counterDiamond == 5 || counterSpade == 5){
+		if (counterHeart == 5){
 			flushIsFound = true;
 			break;
 		}
-		if (flushIsFound)
+		if (counterClub == 5){
+			flushIsFound = true;
 			break;
+		}
+		if (counterDiamond == 5){
+			flushIsFound = true;
+			break;
+		}
+		if (counterSpade == 5){
+			flushIsFound = true;
+			break;
+		}
 	}
+	
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 3 - i; j++) {
+			if (heartArray[j] > heartArray[j + 1]) {
+				int tmp = heartArray[j];
+				heartArray[j] = heartArray[j + 1];
+				heartArray[j + 1] = tmp;
+			}
+		}
+
+	}
+
+	highCard = highCardArray[3];
+
 		if (flushIsFound){
 			printf("%s", "flush!!!");
-//			return Flush + highCard + 2;
+			return Flush + highCard + 2;
 		}
 		else return 0;
 }
